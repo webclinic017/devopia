@@ -1,0 +1,73 @@
+Company,Ticker,Date of Purchase,Quantity Held,Market Cap (in Billions),Sector,Closing Price (USD)
+Samsung Electronics Co., Ltd.,005930.KS,2023-01-15,100,400,Technology,1000
+Alibaba Group Holding Limited,BABA,2023-02-28,50,600,Technology/E-commerce,200
+Toyota Motor Corporation,TM,2023-03-10,200,250,Automotive,150
+Nestle S.A.,NESN.SW,2023-04-05,75,350,Consumer Goods,200
+Royal Dutch Shell plc,RDS-A,2023-05-20,80,200,Energy,50
+Volkswagen Group,VOW3.DE,2023-06-12,150,100,Automotive,100
+Samsung Electronics Co., Ltd.,005930.KS,2023-07-30,120,450,Technology,1200
+Alibaba Group Holding Limited,BABA,2023-08-18,40,700,Technology/E-commerce,250
+Sony Group Corporation,SONY,2023-09-05,90,150,Technology,100
+HSBC Holdings plc,HSBC,2023-10-22,110,150,Finance,30
+Bayer AG,BAYRY,2023-11-12,85,100,Pharmaceuticals,50
+Siemens AG,SIE.DE,2023-12-03,120,200,Technology,80
+Samsung Electronics Co., Ltd.,005930.KS,2024-01-09,60,500,Technology,800
+Alibaba Group Holding Limited,BABA,2024-02-17,100,800,Technology/E-commerce,400
+Toyota Motor Corporation,TM,2024-03-08,70,300,Automotive,200
+Nestle S.A.,NESN.SW,2024-04-20,65,400,Consumer Goods,250
+Royal Dutch Shell plc,RDS-A,2024-05-01,55,250,Energy,70
+Volkswagen Group,VOW3.DE,2024-06-14,45,150,Automotive,80
+Samsung Electronics Co., Ltd.,005930.KS,2024-07-27,80,600,Technology,1000
+Alibaba Group Holding Limited,BABA,2024-08-10,110,1000,Technology/E-commerce,600
+Sony Group Corporation,SONY,2024-09-18,70,200,Technology,120
+HSBC Holdings plc,HSBC,2024-10-29,90,200,Finance,40
+Bayer AG,BAYRY,2024-11-05,150,120,Pharmaceuticals,70
+Siemens AG,SIE.DE,2024-12-17,95,250,Technology,100
+Samsung Electronics Co., Ltd.,005930.KS,2025-01-22,80,700,Technology,1500
+Alibaba Group Holding Limited,BABA,2025-02-08,55,1200,Technology/E-commerce,800
+Toyota Motor Corporation,TM,2025-03-19,90,350,Automotive,250
+Nestle S.A.,NESN.SW,2025-04-30,130,500,Consumer Goods,300
+Royal Dutch Shell plc,RDS-A,2025-05-15,100,300,Energy,80
+Volkswagen Group,VOW3.DE,2025-06-28,85,200,Automotive,100
+Samsung Electronics Co., Ltd.,005930.KS,2025-07-09,120,800,Technology,1800
+Alibaba Group Holding Limited,BABA,2025-08-20,75,1500,Technology/E-commerce,1000
+Sony Group Corporation,SONY,2025-09-03,110,250,Technology,150
+HSBC Holdings plc,HSBC,2025-10-14,90,300,Finance,50
+Bayer AG,BAYRY,2025-11-26,70,200,Pharmaceuticals,60
+Siemens AG,SIE.DE,2025-12-30,100,300,Technology,100
+Samsung Electronics Co., Ltd.,005930.KS,2026-01-05,150,900,Technology,2000
+Alibaba Group Holding Limited,BABA,2026-02-18,85,1800,Technology/E-commerce,1200
+Toyota Motor Corporation,TM,2026-03-27,120,400,Automotive,300
+Nestle S.A.,NESN.SW,2026-04-09,100,600,Consumer Goods,350
+Royal Dutch Shell plc,RDS-A,2026-05-14,70,400,Energy,100
+Volkswagen Group,VOW3.DE,2026-06-25,110,250,Automotive,120
+Samsung Electronics Co., Ltd.,005930.KS,2026-07-08,95,1000,Technology,2200
+Alibaba Group Holding Limited,BABA,2026-08-19,75,1600,Technology/E-commerce,1100
+Sony Group Corporation,SONY,2026-09-30,130,280,Technology,180
+HSBC Holdings plc,HSBC,2026-10-14,110,350,Finance,60
+Bayer AG,BAYRY,2026-11-26,100,220,Pharmaceuticals,70
+Siemens AG,SIE.DE,2026-12-30,150,400,Technology,120
+Samsung Electronics Co., Ltd.,005930.KS,2027-01-05,200,1200,Technology,2500
+Alibaba Group Holding Limited,BABA,2027-02-18,220,2000,Technology/E-commerce,1500
+Toyota Motor Corporation,TM,2027-03-27,180,500,Automotive,350
+Nestle S.A.,NESN.SW,2027-04-09,250,800,Consumer Goods,400
+Royal Dutch Shell plc,RDS-A,2027-05-14,200,600,Energy,150
+Volkswagen Group,VOW3.DE,2027-06-25,180,300,Automotive,180
+Samsung Electronics Co., Ltd.,005930.KS,2027-07-08,220,1500,Technology,2800
+Alibaba Group Holding Limited,BABA,2027-08-19,250,2200,Technology/E-commerce,1800
+Sony Group Corporation,SONY,2027-09-30,200,350,Technology,200
+HSBC Holdings plc,HSBC,2027-10-14,180,400,Finance,70
+Bayer AG,BAYRY,2027-11-26,220,250,Pharmaceuticals,80
+Siemens AG,SIE.DE,2027-12-30,200,450,Technology,150
+Samsung Electronics Co., Ltd.,005930.KS,2028-01-05,250,1800,Technology,3000
+Alibaba Group Holding Limited,BABA,2028-02-18,200,2500,Technology/E-commerce,1800
+Toyota Motor Corporation,TM,2028-03-27,180,600,Automotive,400
+Nestle S.A.,NESN.SW,2028-04-09,220,1000,Consumer Goods,450
+Royal Dutch Shell plc,RDS-A,2028-05-14,250,800,Energy,200
+Volkswagen Group,VOW3.DE,2028-06-25,220,400,Automotive,220
+Samsung Electronics Co., Ltd.,005930.KS,2028-07-08,300,2000,Technology,3500
+Alibaba Group Holding Limited,BABA,2028-08-19,250,3000,Technology/E-commerce,2200
+Sony Group Corporation,SONY,2028-09-30,200,450,Technology,250
+HSBC Holdings plc,HSBC,2028-10-14,220,500,Finance,100
+Bayer AG,BAYRY,2028-11-26,180,350,Pharmaceuticals,120
+Siemens AG,SIE.DE,2028-12-30,250,600,Technology,180
