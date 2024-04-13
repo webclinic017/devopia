@@ -1,7 +1,7 @@
 'use client'
 import * as React from "react"
 import { Minus, Plus } from "lucide-react"
-
+import logo from "@/assets/MoneyTrees_Logo.png"
 import { DashboardNav } from "@/components/dashboard-nav"
 import { navItems } from "@/constants/data"
 import { cn } from "@/lib/utils"
@@ -34,12 +34,12 @@ export default function Sidebar({wallet}) {
     <nav
       className={cn(`relative hidden h-screen border-r pt-4 lg:block w-72`)}
     >
-      <div className="space-y-4 py-4 h-full">
-        <div className="px-3 py-2 flex flex-col justify-between h-full">
+      <div className="space-y-4 pb-4 h-full">
+        <div className="px-3 pb-2 flex flex-col justify-between h-full">
           <div className="space-y-1 flex h-full flex-col">
-            <h2 className="pb-10 px-4 text-xl font-semibold tracking-tight">
-              SOCHNA HAI
-            </h2>
+          <h2 className="pb-2 px-4 text-xl font-semibold tracking-tight flex items-center justify-center">
+          <img src={logo.src} className="h-24"></img>
+</h2>
             <DashboardNav items={navItems} />
             <div className="h-full flex flex-col justify-end">
             <Link
