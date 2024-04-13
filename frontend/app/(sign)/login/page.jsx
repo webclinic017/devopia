@@ -11,6 +11,7 @@ import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { useRouter } from "next/navigation";
+import signIn from "@/firebase/auth/signin";
 
 const login = () => {
   const router = useRouter();
@@ -28,36 +29,21 @@ const login = () => {
   };
 
   const handleSubmit = async (event) => {
-    event.preventDefault();
-    // Handle form submission logic here
-    console.log();
-    const response = await fetch("http://localhost:8000/user/login", {
-      method: "POST",
-      credentials: "include",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        email: formData.email,
-        password: formData.password,
-      }),
-    });
+    event.preventDefault()
 
-    if (response.status != 200) {
-      let message = await response.json();
-      alert(message.message);
-      console.log("Error");
-    } else {
-    let message = await response.json();
-      console.log(message);
+    const { result, error } = await signIn(formData.email, formData.password);
 
-    //   // Set cookies
-    //   if (message) {
-    //     document.cookie = "authToken="+message.token;
-    //   }
-      router.push("/dashboard");
+    if (error) {
+        return console.log(error)
     }
-  };
+
+
+    
+
+    // else successful
+    console.log(result)
+    return router.push("/dashboard")
+}
 
   return (
     <Card className="mx-auto max-w-sm mt-16">
