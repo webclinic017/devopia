@@ -30,7 +30,8 @@ import {
     Compass, 
     UsersRound,
     CandlestickChart,
-    Bot
+    Bot,
+    Send
     
   } from "lucide-react"
   
@@ -41,6 +42,7 @@ import {
     bot: Bot,
     login: LogIn,
     close: X,
+    send:Send,
     family:UsersRound,
     settings: Settings ,
     compass: Compass,

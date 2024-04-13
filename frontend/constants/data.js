@@ -105,14 +105,19 @@ export const users = [
       href: "/dashboard/investment",
       icon: "invest",
       label: "investment"
-    },
-   
-       
+    },    
     {
       title: "DhanSakhi",
       href: "/dashboard/chatbot",
       icon: "bot",
       label: "dhansakhi"
-    }
+    },
+    {
+      title: "Payment",
+      href: "/dashboard/payment",
+      icon: "send",
+      label: "payment"
+    },   
+
   ]
   

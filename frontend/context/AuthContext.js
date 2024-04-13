@@ -6,6 +6,11 @@ import {
 } from 'firebase/auth';
 import firebase_app from '@/firebase/config';
 
+import { collection, query, where,getFirestore,getDocs } from "firebase/firestore";
+
+const db = getFirestore(firebase_app)
+// Create a query against the collection.
+
 const auth = getAuth(firebase_app);
 
 export const AuthContext = React.createContext({});
@@ -19,9 +24,23 @@ export const AuthContextProvider = ({
     const [loading, setLoading] = React.useState(true);
 
     React.useEffect(() => {
-        const unsubscribe = onAuthStateChanged(auth, (user) => {
+        const unsubscribe = onAuthStateChanged(auth, async (user)  => {
             if (user) {
-                setUser(user);
+
+
+                const citiesRef = collection(db, "users");
+
+                const q = query(citiesRef, where("email", "==", user.email));
+                console.log(q)
+
+                const querySnapshot = await getDocs(q);
+querySnapshot.forEach((doc) => {
+  // doc.data() is never undefined for query doc snapshots
+  console.log(doc.id, " => ", doc.data());
+  setUser(doc.data());
+});
+
+                
             } else {
                 setUser(null);
             }

@@ -39,7 +39,7 @@ export default function Sidebar({wallet}) {
           <div className="space-y-1 flex h-full flex-col">
             <h2 className="pb-10 px-4 text-xl font-semibold tracking-tight">
               SOCHNA HAI
-            </h2>
+            </h2> 
             <DashboardNav items={navItems} />
             <div className="h-full flex flex-col justify-end">
             <Link
