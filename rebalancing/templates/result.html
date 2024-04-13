@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rebalancing Results</title>
+</head>
+<body>
+    <div>
+        <h2>Original Allocation</h2>
+        {{ original_allocation | safe }}
+        {{ original_pie_chart | safe }}
+    </div>
+    <div>
+        <h2>Return Based Rebalancing</h2>
+        {{ return_based_rebalancing | safe }}
+        {{ return_pie_chart | safe }}
+    </div>
+    <div>
+        <h2>Risk Based Rebalancing</h2>
+        {{ risk_based_rebalancing | safe }}
+        {{ risk_pie_chart | safe }}
+    </div>
+</body>
+</html>
