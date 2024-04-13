@@ -1,0 +1,7 @@
+streamlit
+PyPDF2
+langchain
+streamlit_chat
+langchain-community
+tiktoken
+faiss-cpu
