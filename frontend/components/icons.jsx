@@ -30,8 +30,9 @@ import {
     Compass, 
     UsersRound,
     CandlestickChart,
-    Bot
-    
+    Bot,
+    Lightbulb,
+    Album  
   } from "lucide-react"
   
   export const Icons = {
@@ -41,6 +42,7 @@ import {
     bot: Bot,
     login: LogIn,
     close: X,
+    Lightbulb : Lightbulb,
     family:UsersRound,
     settings: Settings ,
     compass: Compass,
@@ -66,6 +68,7 @@ import {
     sun: SunMedium,
     moon: Moon,
     laptop: Laptop,
+    album: Album,
     gitHub: ({ ...props }) => (
       <svg
         aria-hidden="true"

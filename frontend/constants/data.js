@@ -113,6 +113,18 @@ export const users = [
       href: "/dashboard/chatbot",
       icon: "bot",
       label: "dhansakhi"
+    },
+    {
+      title: "Tips and News",
+      href: "/dashboard/tan",
+      icon: "Lightbulb",
+      lable: "tan"
+    },
+    {
+      title: "Notes",
+      href: "/dashboard/notes",
+      icon: "album",
+      lable: "news"
     }
   ]
   
