@@ -118,6 +118,17 @@ export const users = [
       icon: "send",
       label: "payment"
     },   
-
+{
+      title: "Tips and News",
+      href: "/dashboard/tan",
+      icon: "Lightbulb",
+      lable: "tan"
+    },
+    {
+      title: "Notes",
+      href: "/dashboard/notes",
+      icon: "album",
+      lable: "news"
+    }
   ]
   
