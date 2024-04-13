@@ -9,13 +9,14 @@ require('firebase/compat/firestore');
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyDeZNyxv9e6fXEBTQzmwuJPz2E6SvA1RPg",
-  authDomain: "portfolio-management-93402.firebaseapp.com",
-  projectId: "portfolio-management-93402",
-  storageBucket: "portfolio-management-93402.appspot.com",
-  messagingSenderId: "959390801965",
-  appId: "1:959390801965:web:0720f0bedf849de90b58a4"
+  apiKey: "AIzaSyDu0L_qBw_Z6lUQhr5LtSp48Xr1tTMetNc",
+  authDomain: "devopia-18b84.firebaseapp.com",
+  projectId: "devopia-18b84",
+  storageBucket: "devopia-18b84.appspot.com",
+  messagingSenderId: "732586973685",
+  appId: "1:732586973685:web:17f995d49573d4edf2e8bc"
 };
+
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
