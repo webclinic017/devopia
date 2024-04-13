@@ -16,6 +16,6 @@ def sendMessage(senderId, message):
     res = client.messages.create(
         body=message,
         from_=FROM,
-        to=f'whatsapp:+{senderId}'
+        to=f'whatsapp:+91{senderId}'
     )
     return res
