@@ -105,9 +105,7 @@ export const users = [
       href: "/dashboard/investment",
       icon: "invest",
       label: "investment"
-    },
-   
-       
+    },    
     {
       title: "DhanSakhi",
       href: "/dashboard/chatbot",
@@ -115,6 +113,12 @@ export const users = [
       label: "dhansakhi"
     },
     {
+      title: "Payment",
+      href: "/dashboard/payment",
+      icon: "send",
+      label: "payment"
+    },   
+{
       title: "Tips and News",
       href: "/dashboard/tan",
       icon: "Lightbulb",

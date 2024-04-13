@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useState,useEffect } from "react";
 import {
   CardTitle,
   CardDescription,
@@ -12,6 +12,7 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { useRouter } from "next/navigation";
 import signIn from "@/firebase/auth/signin";
+import { useAuthContext } from "@/context/AuthContext";
 
 const login = () => {
   const router = useRouter();
@@ -44,6 +45,18 @@ const login = () => {
     console.log(result)
     return router.push("/dashboard")
 }
+
+
+const { user } = useAuthContext()
+
+useEffect(() => {
+  if (user == null) router.push("/signin");
+  router.push("/dashboard")
+
+  console.log(user)
+}, [user])
+
+// if (user == null) return null
 
   return (
     <Card className="mx-auto max-w-sm mt-16">

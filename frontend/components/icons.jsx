@@ -31,6 +31,7 @@ import {
     UsersRound,
     CandlestickChart,
     Bot,
+    Send,
     Lightbulb,
     Album  
   } from "lucide-react"
@@ -42,6 +43,7 @@ import {
     bot: Bot,
     login: LogIn,
     close: X,
+    send:Send,
     Lightbulb : Lightbulb,
     family:UsersRound,
     settings: Settings ,

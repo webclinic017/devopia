@@ -1,5 +1,5 @@
 'use client'
-import React, { useEffect, useRef,useState } from 'react';
+import { useEffect, useRef,useState } from 'react';
 import Chart from 'chart.js/auto';
 import { CalendarDateRangePicker } from "@/components/date-range-picker"
 import { Overview } from "@/components/overview"
@@ -29,19 +29,68 @@ import {
 import { ScrollArea } from "@/components/ui/scroll-area"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { useRouter } from "next/navigation";
+import { useAuthContext } from "@/context/AuthContext";
+import ExpensePie  from "@/components/expensePie"
+import { collection, query, where,getFirestore,getDocs } from "firebase/firestore";
+import firebase_app from '@/firebase/config';
+
+
 
 export default function page() {
- 
+  const { user } = useAuthContext()
+  const [date,setDate] = useState(null)
+  const [members,setMembers] = useState({})
+
+  const db = getFirestore(firebase_app)
+
+
+  useEffect(() => {
+    if (user == null) router.push("/signin")
+
+    console.log(user)
+    const date = new Date();
+
+let day = date.getDate();
+let month = date.getMonth() + 1;
+let year = date.getFullYear();
+
+// This arrangement can be altered based on how we want the date's format to appear.
+let currentDate = `${day}/${month}/${year}`;
+setDate(currentDate)
+getAllMembers()
+}, [user])
+
+
+const getAllMembers = async () => {
+
+  const usersRef = collection(db, "users");
+
+  const q = query(usersRef, where("familyId", "==", "03iPJ8"));
+  console.log(q);
+
+  const querySnapshot = await getDocs(q);
+querySnapshot.forEach((doc) => {
+console.log(doc.id, " => ", doc.data());
+setMembers((prev)=> ({...prev, [doc.id]:doc.data()}))
+
+})
+
+}
+
+
+
+
+
 
   return (
     <ScrollArea className="h-full">
       <div className="flex-1 space-y-4 p-4 md:p-8 pt-6">
         <div className="flex items-center justify-between space-y-2">
           <h2 className="text-3xl font-bold tracking-tight">
-            Family Name
+            {user.familyName} {console.log(members)}
           </h2>
           <div className="hidden md:flex items-center space-x-2">
-            date
+            Hello {user.name}, today is {date}
           </div>
         </div>
        
@@ -55,10 +104,9 @@ export default function page() {
                  <IndianRupee  className="h-4 w-4 text-muted-foreground"/>
                 </CardHeader>
                 <CardContent>
-                  <div className="text-2xl font-bold">$5</div>
-                  <p className="text-xs text-muted-foreground">
-                    +20.1% from last month
-                  </p>
+                  
+                   { members&&<ExpensePie data={members}/>}
+                  
                 </CardContent>
               </Card>
               <Card>
