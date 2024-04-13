@@ -28,13 +28,20 @@ import {
     UserX2Icon,
     X,
     Compass, 
+    UsersRound,
+    CandlestickChart,
+    Bot
+    
   } from "lucide-react"
   
   export const Icons = {
     dashboard: LayoutDashboardIcon,
+    invest: CandlestickChart,
     logo: Command,
+    bot: Bot,
     login: LogIn,
     close: X,
+    family:UsersRound,
     settings: Settings ,
     compass: Compass,
     profile: User2Icon,

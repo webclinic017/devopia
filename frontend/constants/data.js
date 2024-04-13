@@ -89,29 +89,30 @@ export const users = [
       label: "Dashboard"
     },
     {
-      title: "Explore",
-      href: "/dashboard/explore",
-      icon: "compass",
-      label: "explore"
-    },
-    {
-      title: "Manage",
-      href: "/dashboard/manage",
-      icon: "settings",
-      label: "manage"
-    },
-    {
-      title: "History",
-      href: "/dashboard/history",
+      title: "My Expense",
+      href: "/dashboard/expense",
       icon: "profile",
-      label: "history"
+      label: "expense"
     },
-    
     {
-      title: "Login",
-      href: "/",
-      icon: "login",
-      label: "login"
+      title: "Family Expense",
+      href: "/dashboard/family",
+      icon: "family",
+      label: "family"
+    },
+    {
+      title: "Investment",
+      href: "/dashboard/investment",
+      icon: "invest",
+      label: "investment"
+    },
+   
+       
+    {
+      title: "DhanSakhi",
+      href: "/dashboard/chatbot",
+      icon: "bot",
+      label: "dhansakhi"
     }
   ]
   
