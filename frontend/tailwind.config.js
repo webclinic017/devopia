@@ -74,4 +74,12 @@ module.exports = {
     },
   },
   plugins: [require("tailwindcss-animate")],
+  module: {
+    rules: [
+      {
+        test: /\.csv$/,
+        use: ['csv-loader']
+      }
+    ]
+  }
 }
