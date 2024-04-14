@@ -95,7 +95,7 @@ export const users = [
       label: "expense"
     },
     {
-      title: "Family Expense",
+      title: "Family Goals",
       href: "/dashboard/family",
       icon: "family",
       label: "family"

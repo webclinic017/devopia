@@ -115,7 +115,7 @@ export default function page() {
       amount: payee.amount,
       phone:user.phone,
       category:payee.category,
-      timestampe:payee.date
+      timestamp:payee.date
     }
     const { addresult, adderror } = await addUser(
       "expense",

@@ -5,7 +5,8 @@ const ExpenseCatBarChart = ({ data }) => {
 
     const groupedData = {};
 
-    data.forEach(item => {
+    Object.keys(data).forEach(item => {
+        item = data[item]
     const category = item.category;
     if (!groupedData[category]) {
         groupedData[category] = [];

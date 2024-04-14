@@ -51,7 +51,7 @@ const { user } = useAuthContext()
 
 useEffect(() => {
   if (user == null) router.push("/signin");
-  router.push("/dashboard")
+  else  router.push("/dashboard")
 
   console.log(user)
 }, [user])

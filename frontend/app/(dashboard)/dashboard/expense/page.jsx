@@ -1,5 +1,5 @@
 'use client'
-import React, { useEffect, useRef,useState } from 'react';
+import { useEffect, useRef,useState } from 'react';
 import Chart from 'chart.js/auto';
 import { CalendarDateRangePicker } from "@/components/date-range-picker"
 import { Overview } from "@/components/overview"
@@ -29,19 +29,83 @@ import {
 import { ScrollArea } from "@/components/ui/scroll-area"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { useRouter } from "next/navigation";
+import { useAuthContext } from "@/context/AuthContext";
+import ExpensePie  from "@/components/expensePie"
+import ExpenseCatBarChart  from "@/components/expenseCatBarChart"
+import ExpensePieCont  from "@/components/expensePieCont"
 
-export default function page() {
- 
+import { collection, query, where,getFirestore,getDocs } from "firebase/firestore";
+import firebase_app from '@/firebase/config';
+
+
+
+export default  function  page() {
+  const { user } = useAuthContext()
+  const [date,setDate] = useState(null)
+  const [members,setMembers] = useState({})
+  const [expenses,setExpenses] = useState([])
+
+  const db = getFirestore(firebase_app)
+
+
+  useEffect(() => {
+    if (user == null) router.push("/signin")
+
+    console.log(user)
+    const date = new Date();
+
+let day = date.getDate();
+let month = date.getMonth() + 1;
+let year = date.getFullYear();
+
+// This arrangement can be altered based on how we want the date's format to appear.
+let currentDate = `${day}/${month}/${year}`;
+setDate(currentDate)
+getAllMembers()
+
+}, [user])
+
+
+const getAllMembers = async () => {
+  const usersRef = collection(db, "users");
+  const expenseRef = collection(db, "expense");
+
+  const q = query(usersRef, where("phone", "==", user.phone));
+  console.log(q);
+
+  const querySnapshot = await getDocs(q);
+querySnapshot.forEach(async (doc) => {
+console.log(doc.id, " => ", doc.data());
+setMembers((prev)=> ({...prev, [doc.id]:doc.data()}))
+let qe = query(expenseRef, where("phone", "==", doc.data().phone ));
+
+
+const querySnapshotE = await getDocs(qe);
+  querySnapshotE.forEach((doc) => {
+  console.log(doc.id, "=>", doc.data());
+  setExpenses((prev)=> ({...prev, [doc.id]:doc.data()}))
+    })
+
+})
+
+}
+
+
+
+
+
+
+
 
   return (
     <ScrollArea className="h-full">
       <div className="flex-1 space-y-4 p-4 md:p-8 pt-6">
         <div className="flex items-center justify-between space-y-2">
           <h2 className="text-3xl font-bold tracking-tight">
-            Family Name
+            {user.familyName} {console.log(expenses)}
           </h2>
           <div className="hidden md:flex items-center space-x-2">
-            date
+            Hello {user.name}, today is {date}
           </div>
         </div>
        
@@ -55,10 +119,9 @@ export default function page() {
                  <IndianRupee  className="h-4 w-4 text-muted-foreground"/>
                 </CardHeader>
                 <CardContent>
-                  <div className="text-2xl font-bold">$5</div>
-                  <p className="text-xs text-muted-foreground">
-                    +20.1% from last month
-                  </p>
+                  
+                   { members&&<ExpensePie data={members}/>}
+                  
                 </CardContent>
               </Card>
               <Card>
@@ -69,10 +132,7 @@ export default function page() {
                   <IndianRupee  className="h-4 w-4 text-muted-foreground"/>
                 </CardHeader>
                 <CardContent>
-                  <div className="text-2xl font-bold">25%</div>
-                  <p className="text-xs text-muted-foreground">
-                    +180.1% from last month
-                  </p>
+                  {expenses && <ExpenseCatBarChart data={expenses}/>}
                 </CardContent>
               </Card>
               <Card>  
@@ -81,10 +141,12 @@ export default function page() {
                   <IndianRupee  className="h-4 w-4 text-muted-foreground"/>
                 </CardHeader>
                 <CardContent>
-                  <div className="text-2xl font-bold">$85</div>
+                  {/* <div className="text-2xl font-bold">$85</div>
                   <p className="text-xs text-muted-foreground">
                     +19% from last month
-                  </p>
+                  </p> */}
+                   { expenses&&<ExpensePieCont data={expenses}/>}
+
                 </CardContent>
               </Card>
               {/* <Card>
@@ -133,7 +195,25 @@ export default function page() {
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
-                {/* {activeTab == "overview" ? <canvas ref={pieChartRef}  id="myChart" /> : null} */}
+                { Object.keys(expenses).slice(0,5).map((key, index) => (
+        <div key={index} className="flex items-center space-x-4 hover:bg-gray-100 p-4 rounded-md">
+          <div className="flex-shrink-0">
+            <span className="font-medium">{index + 1}.</span>
+          </div>
+          <div className="flex-grow">
+            <div className="flex justify-between">
+              <div>
+                <p className="font-medium">To: {expenses[key].to}</p>
+                <p>From: {expenses[key].phone}</p>
+              </div>
+              <div>
+                <p className="font-medium">Amount: {expenses[key].amount}</p>
+                <p>Category: {expenses[key].category}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      ))}
                 </CardContent>
               </Card>
             </div>

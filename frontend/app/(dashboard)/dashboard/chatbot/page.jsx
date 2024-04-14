@@ -1,8 +1,14 @@
+'use client'
 import { Avatar } from "@/components/ui/avatar"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
+import { useEffect, useRef,useState } from 'react';
 
 export default function Component() {
+  const [messages, setMessages] = useState([]);
+  const [userInput, setUserInput] = useState('');
+
+
   return (
     <div className="flex flex-col h-screen pb-4">
       <header className="flex items-center p-4 border-b">
@@ -31,26 +37,62 @@ export default function Component() {
         </Button>
       </header>
       <main className="flex-1 flex flex-col justify-end p-4">
-        <div className="grid gap-4">
-          <div className="flex flex-col items-end space-y-1">
-            <div className="flex items-center space-x-2 max-w-md rounded-lg bg-gray-100 p-4 dark:bg-gray-800">
-              <p className="text-sm">Hi there! How can I assist you today?</p>
-              <div className="text-xs text-gray-500 ml-auto dark:text-gray-400">2 minutes ago</div>
-            </div>
-          </div>
-          <div className="flex flex-col items-start space-y-1">
-            <div className="flex items-center space-x-2 max-w-md rounded-lg bg-gray-100 p-4 dark:bg-gray-800">
-              <p className="text-sm">I'm having trouble with my internet connection.</p>
-              <div className="text-xs text-gray-500 ml-auto dark:text-gray-400">Just now</div>
-            </div>
-          </div>
+  <div className="grid gap-4">
+    {messages.map((message, index) => (
+      <div key={index} className="flex flex-col items-start space-y-1">
+        <div
+          className={`flex items-center space-x-2 max-w-md rounded-lg ${
+            message.sender === 'user' ? 'bg-gray-100 dark:bg-gray-800' : 'bg-blue-100 dark:bg-blue-800'
+          } p-4`}
+        >
+          <p className="text-sm">{message.text}</p>
+          <div className="text-xs text-gray-500 ml-auto dark:text-gray-400">Just now</div>
         </div>
-      </main>
+      </div>
+    ))}
+  </div>
+</main>
       <div className="border-t p-4">
-        <form className="flex space-x-2">
-          <Input className="flex-1 min-w-0" placeholder="Type a message..." type="text" />
-          <Button type="submit">Send</Button>
-        </form>
+        <form
+  onSubmit={async (e) => {
+    e.preventDefault();
+    if (userInput.trim()) {
+      setMessages([...messages, { sender: 'user', text: userInput.trim() }]);
+      setUserInput('');
+
+      try {
+        const response = await fetch('/api/chat', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ message: userInput.trim() }),
+        });
+
+        const data = await response.json();
+
+        if (response.ok) {
+          setMessages([...messages, { sender: 'bot', text: data.response }]);
+        } else {
+          setMessages([...messages, { sender: 'bot', text: 'An error occurred while fetching the response.' }]);
+        }
+      } catch (error) {
+        console.error('Error:', error);
+        setMessages([...messages, { sender: 'bot', text: 'An error occurred while fetching the response.' }]);
+      }
+    }
+  }}
+  className="flex space-x-2"
+>
+  <Input
+    className="flex-1 min-w-0"
+    placeholder="Type a message..."
+    type="text"
+    value={userInput}
+    onChange={(e) => setUserInput(e.target.value)}
+  />
+  <Button type="submit">Send</Button>
+</form>
       </div>
     </div>
   )

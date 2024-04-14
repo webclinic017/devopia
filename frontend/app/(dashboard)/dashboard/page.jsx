@@ -83,7 +83,7 @@ let qe = query(expenseRef, where("phone", "==", doc.data().phone ));
 const querySnapshotE = await getDocs(qe);
   querySnapshotE.forEach((doc) => {
   console.log(doc.id, "=>", doc.data());
-  setExpenses((prev)=> ([...prev, doc.data()]))
+  setExpenses((prev)=> ({...prev, [doc.id]:doc.data()}))
     })
 
 })
@@ -180,7 +180,7 @@ const querySnapshotE = await getDocs(qe);
                 <CardHeader>
                   <CardTitle>Family Expense History</CardTitle>
                   <p className="text-xs text-muted-foreground">
-                   dasd
+                   Past Expense transaction
                   </p>
                 </CardHeader>
                 <CardContent className="pl-2">
@@ -195,7 +195,25 @@ const querySnapshotE = await getDocs(qe);
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
-                {/* {activeTab == "overview" ? <canvas ref={pieChartRef}  id="myChart" /> : null} */}
+                { Object.keys(expenses).slice(0,5).map((key, index) => (
+        <div key={index} className="flex items-center space-x-4 hover:bg-gray-100 p-4 rounded-md">
+          <div className="flex-shrink-0">
+            <span className="font-medium">{index + 1}.</span>
+          </div>
+          <div className="flex-grow">
+            <div className="flex justify-between">
+              <div>
+                <p className="font-medium">To: {expenses[key].to}</p>
+                <p>From: {expenses[key].phone}</p>
+              </div>
+              <div>
+                <p className="font-medium">Amount: {expenses[key].amount}</p>
+                <p>Category: {expenses[key].category}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      ))}
                 </CardContent>
               </Card>
             </div>

@@ -8,7 +8,8 @@ import { useEffect,useState } from 'react';
 const ExpensePieCont = ({data}) => {
   const groupedData = {};
 
-  data.forEach(item => {
+  Object.keys(data).forEach(item => {
+    item = data[item]
     const phone = item.phone;
     if (!groupedData[phone]) {
       groupedData[phone] = [];
