@@ -5,18 +5,26 @@ import { useEffect,useState } from 'react';
 
 
 
-const ExpensePie = ({data}) => {
-    console.log(data)
-    const incomeData = Object.values(data).map(person => ({
-        id: person.email,
-        label: person.name,
-        value: person.income,
-      }));
+const ExpensePieCont = ({data}) => {
+  const groupedData = {};
+
+  data.forEach(item => {
+    const phone = item.phone;
+    if (!groupedData[phone]) {
+      groupedData[phone] = [];
+    }
+    groupedData[phone].push(item);
+  });
+  
+  const chartData = Object.entries(groupedData).map(([phone, items]) => ({
+    id: phone,
+    value: items.reduce((sum, item) => sum + parseFloat(item.amount), 0),
+  }));
 
     return (
         <div className="aspect-square mx-auto w-full my-auto">
   <ResponsivePie
-    data={incomeData}
+    data={chartData}
     margin={{ top: 10, right: 10, bottom: 20, left: 10 }}
     innerRadius={0.4}
     padAngleRadius={0.6}
@@ -76,4 +84,4 @@ const ExpensePie = ({data}) => {
   /></div>
 )}
 
-export default ExpensePie;
+export default ExpensePieCont;

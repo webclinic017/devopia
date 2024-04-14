@@ -3,10 +3,11 @@ import flask
 from flask import send_from_directory, request
 import firebase_admin
 from firebase_admin import credentials, firestore
+from urllib.parse import quote
 
 app = flask.Flask(__name__)
 
-cred = credentials.Certificate("C:\\Users\\Admin\\Downloads\\devopia-18b84-firebase-adminsdk-lh195-8efa537536.json")
+cred = credentials.Certificate("/Users/malharbonde/Desktop/test/whatsapp-bot/devopia-18b84-firebase-adminsdk-lh195-8efa537536.json")
 firebase_admin.initialize_app(cred)
 
 db = firestore.client()
@@ -31,46 +32,45 @@ def whatsapp():
     senderId = senderId[2:] if senderId.startswith('91') else senderId
     print(f'Message --> {message}')
     print(f'Sender id --> {senderId}')
-    res = sendMessage(senderId=senderId, message=message)
-    print(f'This is the response --> {res}')
-    
     save_message_to_firestore(senderId, message)
     
-    return '200'
+    return ' ', 200
 
 def save_message_to_firestore(senderId, message):
-    # Split the message into parts
     parts = message.split()
     
-    # Initialize variables to hold the item name and cost
     itemName = ""
     cost = None
     
-    # Iterate over the parts to identify the item name and cost
     for part in parts:
-        # Try to convert each part to an integer to identify the cost
         try:
             cost = int(part)
         except ValueError:
-            # If conversion fails, it's part of the item name
             itemName += f"{part} "
-    
-    # Remove the trailing space from the item name
+   
     itemName = itemName.strip()
     
-    # Check if a cost was found
     if cost is None:
         print("Error: No valid cost found in the message.")
-        return # Exit the function if no cost is found
-    
-    # Create a new document in the 'messages' collection
-    doc_ref = db.collection('messages').document()
+        return 
+    doc_ref = db.collection('expense').document()
     doc_ref.set({
-        'senderId': senderId,
-        'itemName': itemName,
-        'cost': cost,
-        'timestamp': firestore.SERVER_TIMESTAMP
-    })
+    'amount': cost,
+    'phone': senderId,
+    'category': itemName,
+    'to': "cash",
+    'upi': "cash",
+    'timestamp': firestore.SERVER_TIMESTAMP
+})
+
+    return_msg = f"Successfully added expense of {cost} for {itemName} \u2705"
+    res = sendMessage(senderId=senderId, message=return_msg)
+    print(f'This is the response --> {res}')
+    item_names = ["coffee", "food", "takeout", "movie", "video games", " netflix subscription", "alcohol", "snacks", "eating out", "entertainment", "impulse buy", "dining", "luxury items", "accessories"]
+    
+    if itemName.lower() in item_names and cost > 2000:
+        alert_message = f"⚠️ Alert: Maybe you are spending more on unnecessary things. It's time to revisit your saving goals on 'Money Trees' and also take a look at budgeting tips."
+        sendMessage(senderId=senderId, message=alert_message)
     
     return '200'
 
