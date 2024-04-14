@@ -45,7 +45,7 @@ export default function page() {
 
   return (
     <ScrollArea className="h-full">
-      <section className="grid grid-cols-3 gap-6 mt-6">
+      <section className="px-2 grid grid-cols-3 gap-6 mt-6">
         <Card className="col-span-1">
           <div className="p-4">
             <h2 className="text-lg font-semibold">Your Portfolio</h2>
@@ -88,7 +88,7 @@ export default function page() {
               </div>
             </div>
       </section>
-      <section className="mt-6">
+      <section className="px-2 mt-6">
             <h2 className="text-lg font-semibold">Last Transactions</h2>
             <Table>
               <TableHeader>

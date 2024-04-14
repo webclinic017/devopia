@@ -1,5 +1,5 @@
 'use client'
-import { useEffect, useRef,useState } from 'react';
+import React, { useEffect, useRef,useState } from 'react';
 import Chart from 'chart.js/auto';
 import { CalendarDateRangePicker } from "@/components/date-range-picker"
 import { Overview } from "@/components/overview"
@@ -105,7 +105,7 @@ const querySnapshotE = await getDocs(qe);
             {user.familyName} {console.log(expenses)}
           </h2>
           <div className="hidden md:flex items-center space-x-2">
-            Hello {user.name}, today is {date}
+            date
           </div>
         </div>
        
@@ -119,9 +119,10 @@ const querySnapshotE = await getDocs(qe);
                  <IndianRupee  className="h-4 w-4 text-muted-foreground"/>
                 </CardHeader>
                 <CardContent>
-                  
-                   { members&&<ExpensePie data={members}/>}
-                  
+                  <div className="text-2xl font-bold">$5</div>
+                  <p className="text-xs text-muted-foreground">
+                    +20.1% from last month
+                  </p>
                 </CardContent>
               </Card>
               <Card>
