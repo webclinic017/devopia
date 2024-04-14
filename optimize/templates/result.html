@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio Optimization Result</title>
+</head>
+<body>
+    <h1>Portfolio Optimization Result</h1>
+    <h2>Weights</h2>
+    <ul>
+        {% for key, value in result.weights.items() %}
+            <li>{{ key }}: {{ value }}</li>
+        {% endfor %}
+    </ul>
+    <p>Expected Return: {{ result.expected_return }}</p>
+    <p>Volatility: {{ result.volatility }}</p>
+    <p>Sharpe Ratio: {{ result.sharpe_ratio }}</p>
+    <h2>Allocation</h2>
+    <ul>
+        {% for key, value in result.allocation.items() %}
+            <li>{{ key }}: {{ value }}</li>
+        {% endfor %}
+    </ul>
+    <p>Leftover: {{ result.leftover }}</p>
+</body>
+</html>

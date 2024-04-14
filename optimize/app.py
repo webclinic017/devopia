@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, render_template
 from flask_cors import CORS
 from flask_restful import Resource, Api
 from pandas_datareader import data as pdr
@@ -7,15 +7,23 @@ import yfinance as yf
 from datetime import datetime
 from pypfopt import EfficientFrontier, risk_models, expected_returns
 from pypfopt.discrete_allocation import DiscreteAllocation, get_latest_prices
-
+from werkzeug.utils import secure_filename
+import os 
 
 app = Flask(__name__)
 CORS(app)
 api = Api(app)
 
+UPLOAD_FOLDER = 'uploads'
+ALLOWED_EXTENSIONS = {'csv'}
+
+app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
 dataset = pd.DataFrame()
 
+# Function to check if the filename has allowed extensions
+def allowed_file(filename):
+    return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
 # Function to fetch historical stock prices
 def fetch_stock_prices(tickers, start_date, end_date):
@@ -25,10 +33,7 @@ def fetch_stock_prices(tickers, start_date, end_date):
         stock_data[ticker] = prices
     return stock_data
 
-
 @app.route('/optimize_portfolio', methods=['POST'])
-#test this code please 
-#(start)
 def upload_csv():
     if 'file' not in request.files:
         return jsonify({'error': 'No file part in the request'}),  400
@@ -43,8 +48,9 @@ def upload_csv():
         dataset = pd.read_csv(os.path.join(app.config['UPLOAD_FOLDER'], filename))
         dataset['Ticker'] = dataset['Ticker'] + '.NS'
         return jsonify({'message': 'File uploaded and dataset updated successfully'}),  200
-#(end)
-        
+    else:
+        return jsonify({'error': 'Invalid file extension'}),  400
+
 def optimize_portfolio():
     data = request.json
     tickers = dataset['Ticker'].tolist()
@@ -85,7 +91,6 @@ def optimize_portfolio():
 
     return result
 
-
 def get_stocks(stocks):
     yf.pdr_override()
     returns = []
@@ -102,16 +107,21 @@ def get_stocks(stocks):
         returns.append(sharpe_ratio)
     return returns
 
-
 class Stocks(Resource):
     def post(self):
         request_data = request.get_json()
         returns = get_stocks(request_data['stocks'])
         return returns, 200
 
-
 api.add_resource(Stocks, '/stocks')
 
+@app.route('/')
+def index():
+    return render_template('index.html')
+
+@app.route('/result')
+def result():
+    return render_template('result.html', result = result)
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(debug=True, port=3000)

@@ -33,7 +33,10 @@ import {
     Bot,
     Send,
     Lightbulb,
-    Album  
+    Album,
+    View,
+    Goal,
+    Shuffle
   } from "lucide-react"
   
   export const Icons = {
@@ -71,6 +74,9 @@ import {
     moon: Moon,
     laptop: Laptop,
     album: Album,
+    view: View,
+    goal: Goal,
+    shuffle: Shuffle,
     gitHub: ({ ...props }) => (
       <svg
         aria-hidden="true"

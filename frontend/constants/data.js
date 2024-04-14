@@ -129,6 +129,24 @@ export const users = [
       href: "/dashboard/notes",
       icon: "album",
       lable: "news"
+    },
+    {
+      title: "Monty's View",
+      href: "http://127.0.0.1:5000/",
+      icon: "view",
+      lable: "monty"
+    },
+    {
+      title: "Optimize",
+      href: "http://127.0.0.1:3000/",
+      icon: "goal",
+      lable: "optimize" 
+    },
+    {
+      title: "Rebalance",
+      href: "http://127.0.0.1:4000/",
+      icon: "shuffle",
+      lable: "reorder"
     }
   ]
   
