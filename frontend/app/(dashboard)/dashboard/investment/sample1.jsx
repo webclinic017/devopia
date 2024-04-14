@@ -1,77 +1,88 @@
-'use client'
-import React, { useEffect, useRef,useState } from 'react';
-import Chart from 'chart.js/auto';
-import { CalendarDateRangePicker } from "@/components/date-range-picker"
-import { Overview } from "@/components/overview"
-import { RecentSales } from "@/components/recent-sales"
-import { Button } from "@/components/ui/button"
-import LineChart from '@/components/line-chart'
-import { ResponsiveLine } from '@nivo/line';
-import { ResponsiveBar } from "@nivo/bar"
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogFooter,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "@/components/ui/dialog"
-import { IndianRupee } from 'lucide-react';
+/**
+ * v0 by Vercel.
+ * @see https://v0.dev/t/vfHX0ZedN9q
+ * Documentation: https://v0.dev/docs#integrating-generated-code-into-your-nextjs-app
+ */
 import { AvatarImage, AvatarFallback, Avatar } from "@/components/ui/avatar"
+import { Card } from "@/components/ui/card"
+import { ResponsiveLine } from "@nivo/line"
+import { ResponsiveBar } from "@nivo/bar"
 import { TableHead, TableRow, TableHeader, TableCell, TableBody, Table } from "@/components/ui/table"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle
-} from "@/components/ui/card"
-import { ScrollArea } from "@/components/ui/scroll-area"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 
-export default function page() {
-  // Function to generate a random number within a specific range
-  const getRandomNumber = (min, max) => {
-    return (Math.random() * (max - min) + min).toFixed(2);
-  };
-
-  // Function to format currency with rupee sign
-  const formatCurrency = (amount) => {
-    return '₹' + amount.toLocaleString();
-  };
-
+export default function Component() {
   return (
-    <ScrollArea className="h-full">
-      <section className="grid grid-cols-3 gap-6 mt-6">
-        <Card className="col-span-1">
-          <div className="p-4">
-            <h2 className="text-lg font-semibold">Your Portfolio</h2>
-            <div className="flex justify-between items-center mt-4">
-              <div>
-                <h3 className="text-3xl font-bold">{formatCurrency(getRandomNumber(15000, 25000))}</h3>
-                <div className="text-sm text-gray-500">All time profit: {formatCurrency(getRandomNumber(5000, 10000))}</div>
-              </div>
+    <div className="flex min-h-screen bg-gray-100">
+      <aside className="w-64 bg-white p-5">
+        <div className="mb-10">
+          <FlagIcon className="h-8 w-8 text-blue-500" />
+          <h1 className="text-lg font-semibold">Stockwise</h1>
+        </div>
+        <div className="space-y-4">
+          <div className="font-bold text-sm">MAIN MENU</div>
+          <ul className="space-y-2">
+            <li className="text-blue-500">Dashboard</li>
+            <li>Market</li>
+            <li>Exchange</li>
+            <li>Wallet</li>
+            <li>Blog & News</li>
+          </ul>
+          <div className="font-bold text-sm mt-6">OTHERS</div>
+          <ul className="space-y-2">
+            <li>Account Setting</li>
+            <li>Support</li>
+            <li>Help Center</li>
+            <li>Community</li>
+          </ul>
+        </div>
+      </aside>
+      <main className="flex-1">
+        <div className="p-10">
+          <header className="flex justify-between items-center">
+            <div className="flex space-x-4 items-center">
+              <MenuIcon className="text-gray-600" />
+              <input
+                className="border p-2 rounded-md w-96"
+                placeholder="Search for news, symbols, or companies"
+                type="text"
+              />
             </div>
-            <div className="grid grid-cols-3 gap-4 mt-4">
-              <div className="text-center">
-                <div className="text-lg">{formatCurrency(getRandomNumber(1000, 2000))}</div>
-                <div className="text-sm text-gray-500">AAPL</div>
-              </div>
-              <div className="text-center">
-                <div className="text-lg">{formatCurrency(getRandomNumber(800, 1500))}</div>
-                <div className="text-sm text-gray-500">PYPL</div>
-              </div>
-              <div className="text-center">
-                <div className="text-lg">{formatCurrency(getRandomNumber(2000, 3000))}</div>
-                <div className="text-sm text-gray-500">AMZN</div>
-              </div>
+            <div className="flex items-center space-x-4">
+              <SignalIcon className="text-gray-600" />
+              <Avatar>
+                <AvatarImage alt="Rayford Chenail" src="https://github.com/shadcn.png" />
+                <AvatarFallback>RC</AvatarFallback>
+              </Avatar>
+              <span>Rayford Chenail</span>
             </div>
-          </div>
-        </Card>
-        <div className="col-span-2">
+          </header>
+          <section className="grid grid-cols-3 gap-6 mt-6">
+            <Card className="col-span-1">
+              <div className="p-4">
+                <h2 className="text-lg font-semibold">Your Portfolio</h2>
+                <div className="flex justify-between items-center mt-4">
+                  <div>
+                    <h3 className="text-3xl font-bold">$18,026.00</h3>
+                    <div className="text-sm text-gray-500">All time profit: $8,456.89</div>
+                  </div>
+                  <SettingsIcon className="text-gray-600" />
+                </div>
+                <div className="grid grid-cols-3 gap-4 mt-4">
+                  <div className="text-center">
+                    <div className="text-lg">$1,232.00</div>
+                    <div className="text-sm text-gray-500">AAPL</div>
+                  </div>
+                  <div className="text-center">
+                    <div className="text-lg">$965.00</div>
+                    <div className="text-sm text-gray-500">PYPL</div>
+                  </div>
+                  <div className="text-center">
+                    <div className="text-lg">$2,567.99</div>
+                    <div className="text-sm text-gray-500">AMZN</div>
+                  </div>
+                </div>
+              </div>
+            </Card>
+            <div className="col-span-2">
               <div className="grid grid-cols-2 gap-6">
                 <Card>
                   <div className="p-4">
@@ -87,8 +98,8 @@ export default function page() {
                 </Card>
               </div>
             </div>
-      </section>
-      <section className="mt-6">
+          </section>
+          <section className="mt-6">
             <h2 className="text-lg font-semibold">Last Transactions</h2>
             <Table>
               <TableHeader>
@@ -104,20 +115,23 @@ export default function page() {
                   <TableCell>Bought AMZN</TableCell>
                   <TableCell>Nov 23, 01:00 PM</TableCell>
                   <TableCell>Success</TableCell>
-                  <TableCell>₹2,567.88</TableCell>
+                  <TableCell>$2,567.88</TableCell>
                 </TableRow>
                 <TableRow>
                   <TableCell>Deposit</TableCell>
                   <TableCell>Nov 22, 10:34 AM</TableCell>
                   <TableCell>Success</TableCell>
-                  <TableCell>₹5,874.00</TableCell>
+                  <TableCell>$5,874.00</TableCell>
                 </TableRow>
               </TableBody>
             </Table>
           </section>
-    </ScrollArea>
-  );
+        </div>
+      </main>
+    </div>
+  )
 }
+
 function BarChart(props) {
   return (
     <div {...props}>
