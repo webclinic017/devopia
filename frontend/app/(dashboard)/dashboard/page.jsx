@@ -31,15 +31,19 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { useRouter } from "next/navigation";
 import { useAuthContext } from "@/context/AuthContext";
 import ExpensePie  from "@/components/expensePie"
+import ExpenseCatBarChart  from "@/components/expenseCatBarChart"
+import ExpensePieCont  from "@/components/expensePieCont"
+
 import { collection, query, where,getFirestore,getDocs } from "firebase/firestore";
 import firebase_app from '@/firebase/config';
 
 
 
-export default function page() {
+export default  function  page() {
   const { user } = useAuthContext()
   const [date,setDate] = useState(null)
   const [members,setMembers] = useState({})
+  const [expenses,setExpenses] = useState([])
 
   const db = getFirestore(firebase_app)
 
@@ -58,24 +62,35 @@ let year = date.getFullYear();
 let currentDate = `${day}/${month}/${year}`;
 setDate(currentDate)
 getAllMembers()
+
 }, [user])
 
 
 const getAllMembers = async () => {
-
   const usersRef = collection(db, "users");
+  const expenseRef = collection(db, "expense");
 
-  const q = query(usersRef, where("familyId", "==", "03iPJ8"));
+  const q = query(usersRef, where("familyId", "==", user.familyId));
   console.log(q);
 
   const querySnapshot = await getDocs(q);
-querySnapshot.forEach((doc) => {
+querySnapshot.forEach(async (doc) => {
 console.log(doc.id, " => ", doc.data());
 setMembers((prev)=> ({...prev, [doc.id]:doc.data()}))
+let qe = query(expenseRef, where("phone", "==", doc.data().phone ));
+
+
+const querySnapshotE = await getDocs(qe);
+  querySnapshotE.forEach((doc) => {
+  console.log(doc.id, "=>", doc.data());
+  setExpenses((prev)=> ([...prev, doc.data()]))
+    })
 
 })
 
 }
+
+
 
 
 
@@ -87,7 +102,7 @@ setMembers((prev)=> ({...prev, [doc.id]:doc.data()}))
       <div className="flex-1 space-y-4 p-4 md:p-8 pt-6">
         <div className="flex items-center justify-between space-y-2">
           <h2 className="text-3xl font-bold tracking-tight">
-            {user.familyName} {console.log(members)}
+            {user.familyName} {console.log(expenses)}
           </h2>
           <div className="hidden md:flex items-center space-x-2">
             Hello {user.name}, today is {date}
@@ -117,10 +132,7 @@ setMembers((prev)=> ({...prev, [doc.id]:doc.data()}))
                   <IndianRupee  className="h-4 w-4 text-muted-foreground"/>
                 </CardHeader>
                 <CardContent>
-                  <div className="text-2xl font-bold">25%</div>
-                  <p className="text-xs text-muted-foreground">
-                    +180.1% from last month
-                  </p>
+                  {expenses && <ExpenseCatBarChart data={expenses}/>}
                 </CardContent>
               </Card>
               <Card>  
@@ -129,10 +141,12 @@ setMembers((prev)=> ({...prev, [doc.id]:doc.data()}))
                   <IndianRupee  className="h-4 w-4 text-muted-foreground"/>
                 </CardHeader>
                 <CardContent>
-                  <div className="text-2xl font-bold">$85</div>
+                  {/* <div className="text-2xl font-bold">$85</div>
                   <p className="text-xs text-muted-foreground">
                     +19% from last month
-                  </p>
+                  </p> */}
+                   { expenses&&<ExpensePieCont data={expenses}/>}
+
                 </CardContent>
               </Card>
               {/* <Card>
