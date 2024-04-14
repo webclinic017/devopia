@@ -223,7 +223,7 @@ function CurvedlineChart(props) {
           min: 0,
           max: "auto",
         }}
-        curve="monotoneX"
+        curve="monotoneX"table
         axisTop={null}
         axisRight={null}
         axisBottom={{

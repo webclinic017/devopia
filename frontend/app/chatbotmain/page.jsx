@@ -92,7 +92,7 @@ const querySnapshotE = await getDocs(qe);
 
   return (
     <ScrollArea className="h-full">
-        <iframe src="http://localhost:8501/" title="Your App" className="w-full h-screen" />
+        <iframe src="http://localhost:8501/" title="Your App" className="w-full h-full" />
     </ScrollArea>
   )
 }

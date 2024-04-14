@@ -50,9 +50,7 @@ const login = () => {
 const { user } = useAuthContext()
 
 useEffect(() => {
-  if (user == null) router.push("/signin");
-  router.push("/dashboard")
-
+  if (user != null) router.push("/dashboard");
   console.log(user)
 }, [user])
 

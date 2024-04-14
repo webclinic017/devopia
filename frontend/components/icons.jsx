@@ -36,7 +36,8 @@ import {
     Album,
     View,
     Goal,
-    Shuffle
+    Shuffle,
+    BotMessageSquare 
   } from "lucide-react"
   
   export const Icons = {
@@ -77,6 +78,7 @@ import {
     view: View,
     goal: Goal,
     shuffle: Shuffle,
+    chatbot: BotMessageSquare,
     gitHub: ({ ...props }) => (
       <svg
         aria-hidden="true"

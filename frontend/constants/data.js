@@ -147,6 +147,12 @@ export const users = [
       href: "http://127.0.0.1:4000/",
       icon: "shuffle",
       lable: "reorder"
-    }
+    },
+    // {
+    //   title: "Chatbot",
+    //   href: "/dashboard/chatbotmain",
+    //   icon: "chatbot",
+    //   lable: "chatbot"
+    // }
   ]
   
