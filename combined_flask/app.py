@@ -18,7 +18,7 @@ app = Flask(__name__)
 CORS(app)
 api = Api(app)
 
-app.config['UPLOAD_FOLDER'] = 'uploads/'
+app.config['UPLOAD_FOLDER'] = 'uploads/' #make a folder on your pc named uploads for this to work 
 ALLOWED_EXTENSIONS = {'csv'}
 
 dataset = pd.DataFrame()
@@ -226,7 +226,7 @@ def generate_pie_chart(df, names_col, values_col, title):
     return pio.to_html(fig, full_html=False, include_plotlyjs='cdn')
 
 @app.route('/')
-def index():
+def index(): #might have to rename this function
     return render_template('rebalancing_index.html')
 
 @app.route('/result')
