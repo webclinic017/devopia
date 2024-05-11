@@ -58,7 +58,7 @@ twilio==6.53.0
 tzdata==2024.1
 urllib3==2.2.0
 webencodings==0.5.1
-werkzeug==3.0.1
+werkzeug==3.0.3
 wrapt==1.12.1
 yfinance==0.2.36
 zope.interface==6.2
